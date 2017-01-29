@@ -1,17 +1,21 @@
+//-----------------------------------------------------------------------
+// <copyright file="AssemblyInfo.cs" company="Jareth Development">
+// The contents of these files can be freely used on any project without attribution
+// </copyright>
+//-----------------------------------------------------------------------
+
 using System;
 using System.Reflection;
-using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Microsoft Dynamics CRM SDK Templates")]
-[assembly: AssemblyDescription("The Microsoft Dynamics CRM SDK Templates provide project and item templates for creating a number of SDK centric CRM components.  This template package provides project templates for Unified Service Desk Features and Package Deployment packages.")]
+[assembly: AssemblyTitle("Plugin Cache Example")]
+[assembly: AssemblyDescription("An example of how to cache data within a dynamics crm plugin")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Microsoft")]
+[assembly: AssemblyCompany("Jareth Development")]
 [assembly: AssemblyProduct("Microsoft Dynamics© CRM")]
-[assembly: AssemblyCopyright("© 2015 Microsoft Corporation. All rights reserved")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 [assembly: CLSCompliant(true)]

@@ -1,32 +1,33 @@
-using System;
-using System.ServiceModel;
-using Microsoft.Xrm.Sdk;
-using Microsoft.Xrm.Sdk.Query;
+//-----------------------------------------------------------------------
+// <copyright file="ExamplePlugin.cs" company="Jareth Development">
+// The contents of these files can be freely used on any project without attribution
+// </copyright>
+//-----------------------------------------------------------------------
 
 namespace PluginCacheExample
 {
+    using System;
+    using Microsoft.Xrm.Sdk;
 
     /// <summary>
     /// PluginEntryPoint plug-in.
     /// This is a generic entry point for a plug-in class. Use the Plug-in Registration tool found in the CRM SDK to register this class, import the assembly into CRM, and then create step associations.
     /// A given plug-in can have any number of steps associated with it. 
     /// </summary>    
-    public class PluginEntryPoint : PluginBase
+    public class ExamplePlugin : PluginBase
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="PluginEntryPoint"/> class.
+        /// Initializes a new instance of the <see cref="ExamplePlugin"/> class.
         /// </summary>
         /// <param name="unsecure">Contains public (unsecured) configuration information.</param>
         /// <param name="secure">Contains non-public (secured) configuration information. 
         /// When using Microsoft Dynamics CRM for Outlook with Offline Access, 
         /// the secure string is not passed to a plug-in that executes while the client is offline.</param>
-        public PluginEntryPoint(string unsecure, string secure)
-            : base(typeof(PluginEntryPoint))
+        public ExamplePlugin(string unsecure, string secure)
+            : base(typeof(ExamplePlugin))
         {
-
             // TODO: Implement your custom configuration handling.
         }
-
 
         /// <summary>
         /// Main entry point for he business logic that the plug-in is to execute.
@@ -51,7 +52,7 @@ namespace PluginCacheExample
             }
 
             // Get entity
-            var entity = (Entity) localContext.PluginExecutionContext.InputParameters["Target"];
+            var entity = (Entity)localContext.PluginExecutionContext.InputParameters["Target"];
 
             // Get user property
             var userId = localContext.PluginExecutionContext.InitiatingUserId;

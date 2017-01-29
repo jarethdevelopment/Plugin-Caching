@@ -1,14 +1,18 @@
-﻿using Microsoft.Xrm.Sdk;
-using Microsoft.Xrm.Sdk.Query;
-using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿//-----------------------------------------------------------------------
+// <copyright file="UserCache.cs" company="Jareth Development">
+// The contents of these files can be freely used on any project without attribution
+// </copyright>
+//-----------------------------------------------------------------------
 namespace PluginCacheExample
 {
+    using System;
+    using System.Collections.Concurrent;
+    using Microsoft.Xrm.Sdk;
+    using Microsoft.Xrm.Sdk.Query;
+
+    /// <summary>
+    /// Caches user information
+    /// </summary>
     public class UserCache
     {
         /// <summary>
@@ -16,25 +20,27 @@ namespace PluginCacheExample
         /// </summary>
         private static UserCache instance;
 
-        // Using concurrent as multiple instances of plugin could be running
+        /// <summary>
+        /// Users cache - Using concurrent as multiple instances of plugin could be running
+        /// </summary>
         private ConcurrentDictionary<Guid, Entity> users;
 
         /// <summary>
-        /// Cache constructor
+        /// Prevents a default instance of the <see cref="UserCache"/> class from being created.
         /// </summary>
         private UserCache()
         {
-            users = new ConcurrentDictionary<Guid, Entity>();
+            this.users = new ConcurrentDictionary<Guid, Entity>();
         }
 
         /// <summary>
-        /// Singleton instance
+        /// Gets the singleton instance
         /// </summary>
         public static UserCache Instance
         {
             get
             {
-                //If not initialised, set instance
+                // If not initialised, set instance
                 if (instance == null)
                 {
                     instance = new UserCache();
@@ -49,23 +55,22 @@ namespace PluginCacheExample
         /// </summary>
         /// <param name="id">Id of the user</param>
         /// <param name="service">Organisation service</param>
-        /// <returns></returns>
+        /// <returns>User entity</returns>
         public Entity GetUser(Guid id, IOrganizationService service)
         {
             // Check for user in cache
-            if (users.ContainsKey(id))
+            if (this.users.ContainsKey(id))
             {
-                return users[id];
+                return this.users[id];
             }
 
             // Get user from CRM
             var user = service.Retrieve("systemuser", id, new ColumnSet("domainname"));
 
             // Add to dictionary
-            users.TryAdd(id, user);
+            this.users.TryAdd(id, user);
 
             return user;
         }
-
     }
 }
